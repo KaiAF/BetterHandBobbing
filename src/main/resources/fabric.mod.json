@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "betterhandbobbing",
+  "version": "${version}",
+  "name": "Better Hand Bobbing",
+  "description": "This mod separates the hand bobbing from view bobbing to it's own setting.",
+  "authors": [
+    "IrisJS"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/betterhandbobbing/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "net.livzmc.betterhandbobbing.client.BetterHandBobbingClient"
+    ],
+    "main": [
+      "net.livzmc.betterhandbobbing.BetterHandBobbing"
+    ]
+  },
+  "mixins": [
+    "betterhandbobbing.mixins.json",
+    "betterhandbobbing.mixins.compat.sodium.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.11",
+    "fabric": "*",
+    "minecraft": "1.19.2"
+  }
+}

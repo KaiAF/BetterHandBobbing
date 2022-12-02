@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "plugin": "net.livzmc.betterhandbobbing.mixin.sodium.Compat",
+  "package": "net.livzmc.betterhandbobbing.mixin.sodium",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "UserConfigCategoriesMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
