@@ -1,4 +1,4 @@
-package net.livzmc.betterhandbobbing.mixin.sodium;
+package net.livzmc.betterhandbobbing.mixin;
 
 import net.fabricmc.loader.api.FabricLoader;
 import org.objectweb.asm.tree.ClassNode;
@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Set;
 
 public class Compat implements IMixinConfigPlugin {
+    Boolean hasIrisShaders = FabricLoader.getInstance().isModLoaded("iris");
+    Boolean hasOptiFine = FabricLoader.getInstance().isModLoaded("optifabric");
+
     @Override
     public void onLoad(String mixinPackage) {
     }
@@ -20,7 +23,11 @@ public class Compat implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        return FabricLoader.getInstance().isModLoaded("sodium");
+        if (hasOptiFine) return false;
+        if (mixinClassName.equalsIgnoreCase("GameRendererMixin")) {
+            return !hasIrisShaders;
+        }
+        return true;
     }
 
     @Override

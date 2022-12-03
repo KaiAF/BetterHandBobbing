@@ -1,4 +1,4 @@
-package net.livzmc.betterhandbobbing.mixin.sodium;
+package net.livzmc.betterhandbobbing.mixin.iris;
 
 import net.fabricmc.loader.api.FabricLoader;
 import org.objectweb.asm.tree.ClassNode;
@@ -20,7 +20,7 @@ public class Compat implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        return FabricLoader.getInstance().isModLoaded("sodium");
+        return FabricLoader.getInstance().isModLoaded("iris");
     }
 
     @Override

@@ -21,7 +21,8 @@
   },
   "mixins": [
     "betterhandbobbing.mixins.json",
-    "betterhandbobbing.mixins.compat.sodium.json"
+    "betterhandbobbing.mixins.compat.sodium.json",
+    "betterhandbobbing.mixins.compat.iris.json"
   ],
   "depends": {
     "fabricloader": ">=0.14.11",

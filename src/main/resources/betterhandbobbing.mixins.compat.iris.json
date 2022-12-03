@@ -1,11 +1,10 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "net.livzmc.betterhandbobbing.mixin",
-  "plugin": "net.livzmc.betterhandbobbing.mixin.Compat",
+  "plugin": "net.livzmc.betterhandbobbing.mixin.iris.Compat",
+  "package": "net.livzmc.betterhandbobbing.mixin.iris",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "VideoOptionsScreenMixin",
     "GameRendererMixin"
   ],
   "client": [
