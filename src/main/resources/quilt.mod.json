@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "quilt_loader": {
+    "group": "net.livzmc",
+    "id": "betterhandbobbing",
+    "version": "1.2",
+    "metadata": {
+      "name": "Better Hand Bobbing",
+      "description": "This mod separates the hand bobbing from view bobbing to it's own setting.",
+      "contributors": {
+        "IrisJS": "Developer"
+      },
+      "contact": {
+        "homepage": "https://github.com/KaiAF/BetterHandBobbing",
+        "issues": "https://github.com/KaiAF/BetterHandBobbing/issues",
+        "sources": "https://github.com/KaiAF/BetterHandBobbing"
+      },
+      "icon": "assets/betterhandbobbing/icon.png"
+    },
+    "intermediate_mappings": "net.fabricmc:intermediary",
+    "entrypoints": {
+      "init": "net.livzmc.betterhandbobbing.BetterHandBobbing"
+    },
+    "depends": [
+      {
+        "id": "quilt_loader",
+        "versions": ">=0.17.0-"
+      },
+      {
+        "id": "minecraft",
+        "versions": ">=1.19.2"
+      }
+    ]
+  },
+  "mixin": "betterhandbobbing.mixins.json"
+}
