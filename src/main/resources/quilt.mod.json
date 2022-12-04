@@ -3,7 +3,7 @@
   "quilt_loader": {
     "group": "net.livzmc",
     "id": "betterhandbobbing",
-    "version": "1.2",
+    "version": "1.2.1",
     "metadata": {
       "name": "Better Hand Bobbing",
       "description": "This mod separates the hand bobbing from view bobbing to it's own setting.",
@@ -19,7 +19,8 @@
     },
     "intermediate_mappings": "net.fabricmc:intermediary",
     "entrypoints": {
-      "init": "net.livzmc.betterhandbobbing.BetterHandBobbing"
+      "main": "net.livzmc.betterhandbobbing.BetterHandBobbing",
+      "client": "net.livzmc.betterhandbobbing.client.BetterHandBobbingClient"
     },
     "depends": [
       {
@@ -32,5 +33,9 @@
       }
     ]
   },
-  "mixin": "betterhandbobbing.mixins.json"
+  "mixin": [
+    "betterhandbobbing.mixins.json",
+    "betterhandbobbing.mixins.compat.sodium.json",
+    "betterhandbobbing.mixins.compat.iris.json"
+  ]
 }

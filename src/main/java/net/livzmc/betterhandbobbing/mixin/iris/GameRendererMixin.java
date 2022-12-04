@@ -1,6 +1,5 @@
 package net.livzmc.betterhandbobbing.mixin.iris;
 
-import net.fabricmc.loader.api.FabricLoader;
 import net.irisshaders.iris.api.v0.IrisApi;
 import net.livzmc.betterhandbobbing.BetterHandBobbing;
 import net.minecraft.client.MinecraftClient;
@@ -31,8 +30,8 @@ public abstract class GameRendererMixin {
                 matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(MathHelper.sin(g * 3.1415927F) * h * 3.0F));
                 matrices.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(Math.abs(MathHelper.cos(g * 3.1415927F - 0.2F) * h) * 5.0F));
             }
-            ci.cancel();
         }
+        ci.cancel();
     }
 
     private void handView(MatrixStack matrices, float tickDelta) {
