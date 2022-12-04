@@ -3,7 +3,7 @@
   "quilt_loader": {
     "group": "net.livzmc",
     "id": "betterhandbobbing",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "metadata": {
       "name": "Better Hand Bobbing",
       "description": "This mod separates the hand bobbing from view bobbing to it's own setting.",
