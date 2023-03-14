@@ -26,8 +26,8 @@ dependencies {
 
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-    modImplementation "maven.modrinth:sodium:mc1.19.3-0.4.5"
-    modImplementation "maven.modrinth:iris:1.19.3-v1.4.4"
+    modImplementation "maven.modrinth:sodium:mc1.19.4-0.4.10"
+    modImplementation "maven.modrinth:iris:1.5.2+1.19.4"
     implementation "org.joml:joml:1.10.4"
     implementation "org.anarres:jcpp:1.4.14"
     implementation "io.github.douira:glsl-transformer:1.0.1"
