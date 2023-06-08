@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "betterhandbobbing",
-  "version": "1.4",
+  "version": "1.5",
   "name": "Better Hand Bobbing",
   "description": "This mod separates the hand bobbing from view bobbing to it's own setting.",
   "authors": [
@@ -27,6 +27,6 @@
   "depends": {
     "fabricloader": ">=0.14.11",
     "fabric": "*",
-    "minecraft": "1.19.4"
+    "minecraft": "1.20"
   }
 }
