@@ -28,7 +28,6 @@ public class Config {
             if (!file.exists()) {
                 createConfig();
             }
-            e.printStackTrace();
         }
     }
 
