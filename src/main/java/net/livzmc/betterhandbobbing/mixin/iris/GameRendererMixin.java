@@ -20,16 +20,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class GameRendererMixin {
     @Shadow @Final private MinecraftClient client;
 
+    /**
+     * I take out the part of code that moves the hand. Essentially separating that piece of code into it's own option.
+     */
     @Inject(at = @At("HEAD"), method = "bobView", cancellable = true)
     private void bhb$bobView(MatrixStack matrices, float tickDelta, CallbackInfo ci) {
-        if (!IrisApi.getInstance().isShaderPackInUse()) {
-            if (this.client.getCameraEntity() instanceof PlayerEntity playerEntity) {
-                float f = playerEntity.horizontalSpeed - playerEntity.prevHorizontalSpeed;
-                float g = -(playerEntity.horizontalSpeed + f * tickDelta);
-                float h = MathHelper.lerp(tickDelta, playerEntity.prevStrideDistance, playerEntity.strideDistance);
-                matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(MathHelper.sin(g * 3.1415927F) * h * 3.0F));
-                matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(Math.abs(MathHelper.cos(g * 3.1415927F - 0.2F) * h) * 5.0F));
-            }
+        if (this.client.getCameraEntity() instanceof PlayerEntity playerEntity) {
+            float f = playerEntity.horizontalSpeed - playerEntity.prevHorizontalSpeed;
+            float g = -(playerEntity.horizontalSpeed + f * tickDelta);
+            float h = MathHelper.lerp(tickDelta, playerEntity.prevStrideDistance, playerEntity.strideDistance);
+            matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(MathHelper.sin(g * 3.1415927F) * h * 3.0F));
+            matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(Math.abs(MathHelper.cos(g * 3.1415927F - 0.2F) * h) * 5.0F));
         }
         ci.cancel();
     }
@@ -49,10 +50,8 @@ public abstract class GameRendererMixin {
 
     @Inject(method = "renderHand", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/option/GameOptions;getBobView()Lnet/minecraft/client/option/SimpleOption;", shift = At.Shift.AFTER))
     private void inject(MatrixStack matrices, Camera camera, float tickDelta, CallbackInfo ci) {
-        if (!IrisApi.getInstance().isShaderPackInUse()) {
-            if (BetterHandBobbing.getHandBob().getValue()) {
-                this.handView(matrices, tickDelta);
-            }
+        if (!IrisApi.getInstance().isShaderPackInUse() && BetterHandBobbing.getHandBob().getValue()) {
+            this.handView(matrices, tickDelta);
         }
     }
 }
