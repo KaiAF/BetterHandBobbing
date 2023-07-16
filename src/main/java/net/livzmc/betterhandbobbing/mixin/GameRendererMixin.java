@@ -34,23 +34,10 @@ public abstract class GameRendererMixin {
         ci.cancel();
     }
 
-    private void handView(MatrixStack matrices, float tickDelta) {
-        if (this.client.getCameraEntity() instanceof PlayerEntity playerEntity) {
-            float f = playerEntity.horizontalSpeed - playerEntity.prevHorizontalSpeed;
-            float g = -(playerEntity.horizontalSpeed + f * tickDelta);
-            float h = MathHelper.lerp(tickDelta, playerEntity.prevStrideDistance, playerEntity.strideDistance);
-            if (this.client.options.getPerspective().isFirstPerson()) {
-                if (BetterHandBobbing.getHandBob().getValue()) {
-                    matrices.translate(MathHelper.sin(g * 3.1415927F) * h * 0.5F, -Math.abs(MathHelper.cos(g * 3.1415927F) * h), 0.0);
-                }
-            }
-        }
-    }
-
     @Inject(method = "renderHand", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/option/GameOptions;getBobView()Lnet/minecraft/client/option/SimpleOption;", shift = At.Shift.AFTER))
     private void inject(MatrixStack matrices, Camera camera, float tickDelta, CallbackInfo ci) {
         if (BetterHandBobbing.getHandBob().getValue()) {
-            this.handView(matrices, tickDelta);
+            BetterHandBobbing.handView(matrices, tickDelta, this.client);
         }
     }
 }
