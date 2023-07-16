@@ -23,7 +23,7 @@ public class BetterHandBobbing implements ModInitializer {
         return handBob;
     }
 
-    public static void handView(MatrixStack matrices, float tickDelta, MinecraftClient client) {
+    public static void handBob(MatrixStack matrices, float tickDelta, MinecraftClient client) {
         if (client.getCameraEntity() instanceof PlayerEntity playerEntity) {
             float f = playerEntity.horizontalSpeed - playerEntity.prevHorizontalSpeed;
             float g = -(playerEntity.horizontalSpeed + f * tickDelta);

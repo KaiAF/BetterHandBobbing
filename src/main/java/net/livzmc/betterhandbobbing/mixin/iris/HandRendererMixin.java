@@ -14,10 +14,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(HandRenderer.class)
 public class HandRendererMixin {
     @Inject(method = "setupGlState", at = @At("TAIL"))
-    private void test(GameRenderer gameRenderer, Camera camera, MatrixStack poseStack, float tickDelta, CallbackInfo ci) {
+    private void setupGLState$HandBobbing(GameRenderer gameRenderer, Camera camera, MatrixStack poseStack, float tickDelta, CallbackInfo ci) {
         if (BetterHandBobbing.getHandBob().getValue()) {
-            BetterHandBobbing.handView(poseStack, tickDelta, MinecraftClient.getInstance());
-            //            ((GameRendererAccessor) gameRenderer).invokeBobView(poseStack, tickDelta);
+            BetterHandBobbing.handBob(poseStack, tickDelta, MinecraftClient.getInstance());
         }
     }
 }

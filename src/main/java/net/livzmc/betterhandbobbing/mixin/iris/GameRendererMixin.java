@@ -38,7 +38,7 @@ public abstract class GameRendererMixin {
     @Inject(method = "renderHand", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/option/GameOptions;getBobView()Lnet/minecraft/client/option/SimpleOption;", shift = At.Shift.AFTER))
     private void inject(MatrixStack matrices, Camera camera, float tickDelta, CallbackInfo ci) {
         if (!IrisApi.getInstance().isShaderPackInUse() && BetterHandBobbing.getHandBob().getValue()) {
-            BetterHandBobbing.handView(matrices, tickDelta, client);
+            BetterHandBobbing.handBob(matrices, tickDelta, client);
         }
     }
 }
