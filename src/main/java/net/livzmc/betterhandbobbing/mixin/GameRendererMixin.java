@@ -19,23 +19,25 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class GameRendererMixin {
     @Shadow @Final private MinecraftClient client;
 
-    private void handView(MatrixStack matrices, float tickDelta) {
+    /**
+     * I take out the part of code that moves the hand. Essentially separating that piece of code into it's own option.
+     */
+    @Inject(at = @At("HEAD"), method = "bobView", cancellable = true)
+    private void bhb$bobView(MatrixStack matrices, float tickDelta, CallbackInfo ci) {
         if (this.client.getCameraEntity() instanceof PlayerEntity playerEntity) {
             float f = playerEntity.horizontalSpeed - playerEntity.prevHorizontalSpeed;
             float g = -(playerEntity.horizontalSpeed + f * tickDelta);
             float h = MathHelper.lerp(tickDelta, playerEntity.prevStrideDistance, playerEntity.strideDistance);
-            if (this.client.options.getPerspective().isFirstPerson()) {
-                if (BetterHandBobbing.getHandBob().getValue()) {
-                    matrices.translate(MathHelper.sin(g * 3.1415927F) * h * 0.5F, -Math.abs(MathHelper.cos(g * 3.1415927F) * h), 0.0);
-                }
-            }
+            matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(MathHelper.sin(g * 3.1415927F) * h * 3.0F));
+            matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(Math.abs(MathHelper.cos(g * 3.1415927F - 0.2F) * h) * 5.0F));
         }
+        ci.cancel();
     }
 
     @Inject(method = "renderHand", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/option/GameOptions;getBobView()Lnet/minecraft/client/option/SimpleOption;", shift = At.Shift.AFTER))
     private void inject(MatrixStack matrices, Camera camera, float tickDelta, CallbackInfo ci) {
         if (BetterHandBobbing.getHandBob().getValue()) {
-            this.handView(matrices, tickDelta);
+            BetterHandBobbing.handBob(matrices, tickDelta, this.client);
         }
     }
 }
