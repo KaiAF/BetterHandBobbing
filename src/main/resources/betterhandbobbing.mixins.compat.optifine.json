@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+
+  "package": "net.livzmc.betterhandbobbing.mixin.optifine",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "GameRendererMixin",
+    "VideoDetailsScreenMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -36,6 +36,7 @@
   "mixin": [
     "betterhandbobbing.mixins.json",
     "betterhandbobbing.mixins.compat.sodium.json",
-    "betterhandbobbing.mixins.compat.iris.json"
+    "betterhandbobbing.mixins.compat.iris.json",
+    "betterhandbobbing.mixins.compat.optifine.json"
   ]
 }
