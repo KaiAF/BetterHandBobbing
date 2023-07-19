@@ -29,14 +29,13 @@
       },
       {
         "id": "minecraft",
-        "versions": "1.20"
+        "versions": ">=1.20"
       }
     ]
   },
   "mixin": [
     "betterhandbobbing.mixins.json",
     "betterhandbobbing.mixins.compat.sodium.json",
-    "betterhandbobbing.mixins.compat.iris.json",
-    "betterhandbobbing.mixins.compat.optifine.json"
+    "betterhandbobbing.mixins.compat.iris.json"
   ]
 }
