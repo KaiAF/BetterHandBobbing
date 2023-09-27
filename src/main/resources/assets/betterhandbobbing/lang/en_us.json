@@ -1,4 +1,4 @@
 {
   "betterhandbobbing.options.handbob": "Hand Bobbing",
-  "betterhandbobbing.options.handbob.tooltip": "If enabled, the player's hand will sway and bob when moving around. This setting is incompatible with shaders and will use the default behaviour."
+  "betterhandbobbing.options.handbob.tooltip": "If enabled, the player's hand will sway and bob when moving around."
 }
