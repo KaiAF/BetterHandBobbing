@@ -10,7 +10,7 @@
   "contact": {},
   "license": "MIT",
   "icon": "assets/betterhandbobbing/icon.png",
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
     "client": [
       "net.livzmc.betterhandbobbing.client.BetterHandBobbingClient"
