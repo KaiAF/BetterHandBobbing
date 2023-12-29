@@ -25,9 +25,9 @@
     "betterhandbobbing.mixins.compat.iris.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.11",
+    "fabricloader": ">=0.15.0",
     "fabric-api": "*",
-    "minecraft": ">=1.20"
+    "minecraft": ">=1.20.4"
   },
   "custom": {
     "mm:early_risers": [

@@ -33,15 +33,15 @@ public class BetterHandBobbing implements ModInitializer {
         return handBob;
     }
 
+    // Only use custom method if minecraft's view bobbing setting is disabled and my hand bobbing setting is enabled
     public static void handBob(MatrixStack matrices, float tickDelta, MinecraftClient client) {
         if (client.getCameraEntity() instanceof PlayerEntity playerEntity) {
-            float f = playerEntity.horizontalSpeed - playerEntity.prevHorizontalSpeed;
-            float g = -(playerEntity.horizontalSpeed + f * tickDelta);
-            float h = MathHelper.lerp(tickDelta, playerEntity.prevStrideDistance, playerEntity.strideDistance);
-            if (client.options.getPerspective().isFirstPerson()) {
-                if (BetterHandBobbing.getHandBob().getValue()) {
-                    matrices.translate(MathHelper.sin(g * 3.1415927F) * h * 0.5F, -Math.abs(MathHelper.cos(g * 3.1415927F) * h), 0.0);
-                }
+            if (client.options.getPerspective().isFirstPerson() && BetterHandBobbing.getHandBob().getValue()) {
+                float f = playerEntity.horizontalSpeed - playerEntity.prevHorizontalSpeed;
+                float g = -(playerEntity.horizontalSpeed + f * tickDelta);
+                float h = MathHelper.lerp(tickDelta, playerEntity.prevStrideDistance, playerEntity.strideDistance);
+                float pi = (float)Math.PI;
+                matrices.translate(MathHelper.sin(g * pi) * h * 0.5F, -Math.abs(MathHelper.cos(g * pi) * h), 0.0);
             }
         }
     }
