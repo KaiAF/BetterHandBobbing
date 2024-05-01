@@ -40,8 +40,8 @@ public class BetterHandBobbing implements ModInitializer {
                 float f = playerEntity.horizontalSpeed - playerEntity.prevHorizontalSpeed;
                 float g = -(playerEntity.horizontalSpeed + f * tickDelta);
                 float h = MathHelper.lerp(tickDelta, playerEntity.prevStrideDistance, playerEntity.strideDistance);
-                float pi = (float)Math.PI;
-                matrices.translate(MathHelper.sin(g * pi) * h * 0.5F, -Math.abs(MathHelper.cos(g * pi) * h), 0.0);
+                float pi = 3.1415927F;
+                matrices.translate(MathHelper.sin(g * pi) * h * 0.5F, -Math.abs(MathHelper.cos(g * pi) * h), 0.0F);
             }
         }
     }

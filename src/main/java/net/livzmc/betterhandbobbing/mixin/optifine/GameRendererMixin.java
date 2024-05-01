@@ -5,6 +5,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
+import org.joml.Matrix4f;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -26,7 +27,7 @@ public class GameRendererMixin {
     }
 
     @Inject(method = "renderHand", at = @At(value = "INVOKE", target = "Lnet/minecraft/class_315;method_42448()Lnet/minecraft/class_7172;", shift = At.Shift.AFTER), remap = false)
-    private void inject(MatrixStack matrices, Camera camera, float tickDelta, boolean renderItem, boolean renderOverlay, boolean renderTranslucent, CallbackInfo ci) {
+    private void inject(Camera camera, float tickDelta, Matrix4f matrix4f, boolean renderItem, boolean renderOverlay, boolean renderTranslucent, CallbackInfo ci, MatrixStack matrices) {
         BetterHandBobbing.handBob(matrices, tickDelta, client);
     }
 }
