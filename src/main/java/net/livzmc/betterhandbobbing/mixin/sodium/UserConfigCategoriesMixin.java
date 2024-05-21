@@ -11,7 +11,7 @@ import me.jellysquid.mods.sodium.client.gui.options.control.TickBoxControl;
 import me.jellysquid.mods.sodium.client.gui.options.storage.MinecraftOptionsStorage;
 import net.fabricmc.loader.api.FabricLoader;
 import net.livzmc.betterhandbobbing.BetterHandBobbing;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -32,10 +32,10 @@ public class UserConfigCategoriesMixin {
         List<OptionGroup> groups = new ArrayList<>(cir.getReturnValue().getGroups());
         OptionGroup group = groups.get(hasOtherGroup ? 3 : 2);
         List<Option> options = new ArrayList<>(group.getOptions());
-        options.add(1, OptionImpl.createBuilder(Boolean.TYPE, vanillaOpts).setName(Text.translatable("betterhandbobbing.options.handbob")).setTooltip(Text.translatable("betterhandbobbing.options.handbob.tooltip")).setControl(TickBoxControl::new).setBinding(new VanillaBooleanOptionBinding(BetterHandBobbing.getHandBob())).build());
+        options.add(1, OptionImpl.createBuilder(Boolean.TYPE, vanillaOpts).setName(Component.translatable("betterhandbobbing.options.handbob")).setTooltip(Component.translatable("betterhandbobbing.options.handbob.tooltip")).setControl(TickBoxControl::new).setBinding(new VanillaBooleanOptionBinding(BetterHandBobbing.getHandBob())).build());
         OptionGroup.Builder builder = OptionGroup.createBuilder();
         options.forEach(builder::add);
         groups.set(hasOtherGroup ? 3 : 2, builder.build());
-        cir.setReturnValue(new OptionPage(Text.translatable("stat.generalButton"), ImmutableList.copyOf(groups)));
+        cir.setReturnValue(new OptionPage(Component.translatable("stat.generalButton"), ImmutableList.copyOf(groups)));
     }
 }

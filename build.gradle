@@ -15,13 +15,29 @@ repositories {
     maven {
         url = 'https://api.modrinth.com/maven'
     }
+
+    maven {
+        name = "QuiltMC"
+        url  = "https://maven.quiltmc.org/repository/release/"
+    }
+
+    maven {
+        name = "Parchment"
+        url  = "https://maven.parchmentmc.org"
+    }
+
     mavenCentral()
 }
 
 dependencies {
     // To change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    mappings loom.layered {
+        it.mappings("org.quiltmc:quilt-mappings:${project.quilt_mappings}:intermediary-v2")
+        it.parchment("org.parchmentmc.data:parchment-1.20.1:${project.parchment_mappings}@zip")
+        it.officialMojangMappings()
+    }
+
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
     // Fabric API. This is technically optional, but you probably want it anyway.
