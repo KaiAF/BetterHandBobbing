@@ -20,6 +20,9 @@
     ],
     "main": [
       "net.livzmc.betterhandbobbing.BetterHandBobbing"
+    ],
+    "modmenu": [
+      "net.livzmc.betterhandbobbing.modmenu.BHBModMenuApiImpl"
     ]
   },
   "mixins": [

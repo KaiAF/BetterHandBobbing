@@ -26,6 +26,11 @@ repositories {
         url  = "https://maven.parchmentmc.org"
     }
 
+    maven {
+        name = "Terraformers"
+        url = "https://maven.terraformersmc.com/"
+    }
+
     mavenCentral()
 }
 
@@ -44,6 +49,7 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modImplementation "maven.modrinth:sodium:mc1.20.6-0.5.8"
     modImplementation "maven.modrinth:iris:1.7.0+1.20.6"
+    modImplementation "com.terraformersmc:modmenu:9.0.0"
     implementation "org.joml:joml:1.10.4"
     implementation "org.anarres:jcpp:1.4.14"
     implementation "io.github.douira:glsl-transformer:2.0.0"
