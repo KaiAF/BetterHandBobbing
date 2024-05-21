@@ -7,8 +7,10 @@
   "authors": [
     "IrisJS"
   ],
-  "contact": {},
-  "sources": "https://github.com/KaiAF/BetterHandBobbing",
+  "contact": {
+    "sources": "https://github.com/KaiAF/BetterHandBobbing",
+    "issues": "https://github.com/KaiAF/BetterHandBobbing/issues"
+  },
   "license": "MIT",
   "icon": "assets/betterhandbobbing/icon.png",
   "environment": "client",
@@ -33,6 +35,17 @@
   "custom": {
     "mm:early_risers": [
       "net.livzmc.betterhandbobbing.RunnableLaunchWithOptiFine"
-    ]
+    ],
+    "modmenu": {
+      "id": "betterhandbobbing",
+      "name": "Better Hand Bobbing",
+      "description": "This mod separates the hand bobbing from view bobbing to it's own setting.",
+      "icon": "assets/betterhandbobbing/icon.png",
+      "badges": [],
+      "update_checker": true,
+      "links": {
+        "modmenu.kofi": "https://ko-fi.com/kaiaf"
+      }
+    }
   }
 }
