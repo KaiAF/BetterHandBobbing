@@ -27,7 +27,7 @@ public abstract class GameRendererMixin {
         }
     }
 
-    @Inject(method = "renderItemInHand", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/GameRenderer;bobView(Lcom/mojang/blaze3d/vertex/PoseStack;F)V", shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILHARD)
+    @Inject(method = "renderItemInHand", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Options;bobView()Lnet/minecraft/client/OptionInstance;", shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILHARD)
     private void renderHand$bhb(Camera camera, float tickDelta, Matrix4f matrix4f, CallbackInfo ci, PoseStack stack) {
         // use custom method only if view bobbing is off.
         // do this to prevent it from making the screen bob doubled
