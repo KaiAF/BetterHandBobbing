@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "betterhandbobbing",
-  "version": "MOD_VERSION",
+  "version": "1.5",
   "name": "Better Hand Bobbing",
   "description": "This mod separates the hand bobbing from view bobbing to it's own setting.",
   "authors": [
@@ -20,9 +20,6 @@
     ],
     "main": [
       "net.livzmc.betterhandbobbing.BetterHandBobbing"
-    ],
-    "modmenu": [
-      "net.livzmc.betterhandbobbing.modmenu.BHBModMenuApiImpl"
     ]
   },
   "mixins": [
@@ -31,24 +28,8 @@
     "betterhandbobbing.mixins.compat.iris.json"
   ],
   "depends": {
-    "fabricloader": ">=0.15.0",
-    "fabric-api": "*",
-    "minecraft": ">=1.20.5"
-  },
-  "custom": {
-    "mm:early_risers": [
-      "net.livzmc.betterhandbobbing.RunnableLaunchWithOptiFine"
-    ],
-    "modmenu": {
-      "id": "betterhandbobbing",
-      "name": "Better Hand Bobbing",
-      "description": "This mod separates the hand bobbing from view bobbing to it's own setting.",
-      "icon": "assets/betterhandbobbing/icon.png",
-      "badges": [],
-      "update_checker": true,
-      "links": {
-        "modmenu.kofi": "https://ko-fi.com/kaiaf"
-      }
-    }
+    "fabricloader": ">=0.14.11",
+    "fabric": "*",
+    "minecraft": "~1.21"
   }
 }

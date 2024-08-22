@@ -3,9 +3,8 @@
   "minVersion": "0.8",
   "plugin": "net.livzmc.betterhandbobbing.mixin.iris.Compat",
   "package": "net.livzmc.betterhandbobbing.mixin.iris",
-  "compatibilityLevel": "JAVA_21",
+  "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "GameRendererMixin",
     "HandRendererMixin"
   ],
   "client": [

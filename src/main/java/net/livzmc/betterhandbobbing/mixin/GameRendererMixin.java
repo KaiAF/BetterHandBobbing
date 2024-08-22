@@ -1,38 +1,37 @@
 package net.livzmc.betterhandbobbing.mixin;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.livzmc.betterhandbobbing.BetterHandBobbing;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.Camera;
-import net.minecraft.client.renderer.GameRenderer;
-import org.joml.Matrix4f;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.option.SimpleOption;
+import net.minecraft.client.render.GameRenderer;
+import net.minecraft.client.util.math.MatrixStack;
+import org.joml.Quaternionf;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(GameRenderer.class)
 public abstract class GameRendererMixin {
-    @Shadow @Final private Minecraft minecraft;
+    @Shadow @Final private MinecraftClient client;
 
-    @Redirect(method = "bobView", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;translate(FFF)V"))
-    private void redirectTranslate$bhb(PoseStack instance, float x, float y, float z) {
-        // only translate if view bobbing and hand bobbing are enabled
-        if (this.minecraft.options.bobView().get() && BetterHandBobbing.getHandBob().get()) {
+    @Redirect(method = "renderHand", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/option/SimpleOption;getValue()Ljava/lang/Object;"))
+    public Object getValue(SimpleOption instance) {
+        return true;
+    }
+
+    @Redirect(method = "bobView", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/math/MatrixStack;translate(FFF)V"))
+    private void redirectedTranslate(MatrixStack instance, float x, float y, float z) {
+        if (BetterHandBobbing.getHandBob().getValue()) {
             instance.translate(x, y, z);
         }
     }
 
-    @Inject(method = "renderItemInHand", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Options;bobView()Lnet/minecraft/client/OptionInstance;", shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILHARD)
-    private void renderHand$bhb(Camera camera, float tickDelta, Matrix4f matrix4f, CallbackInfo ci, PoseStack stack) {
-        // use custom method only if view bobbing is off.
-        // do this to prevent it from making the screen bob doubled
-        if (!this.minecraft.options.bobView().get()) {
-            BetterHandBobbing.handBob(stack, tickDelta, this.minecraft);
+    @Redirect(method = "bobView", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/math/MatrixStack;multiply(Lorg/joml/Quaternionf;)V"))
+    private void redirectedMultiply(MatrixStack instance, Quaternionf quaternion) {
+        if (this.client.options.getBobView().getValue()) {
+            instance.multiply(quaternion);
         }
     }
 }

@@ -24,9 +24,6 @@ public class Compat implements IMixinConfigPlugin {
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         if (hasOptiFine) return false;
-        if (mixinClassName.equalsIgnoreCase("net.livzmc.betterhandbobbing.mixin.GameRendererMixin")) {
-            if (hasIrisShaders) return false;
-        }
         return true;
     }
 
