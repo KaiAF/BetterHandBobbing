@@ -31,7 +31,7 @@ public class UserConfigCategoriesMixin {
     private static void bhb$addOption(CallbackInfoReturnable<OptionPage> cir) {
         List<OptionGroup> groups = new ArrayList<>(cir.getReturnValue().getGroups());
         OptionGroup group = groups.get(hasOtherGroup ? 3 : 2);
-        List<Option> options = new ArrayList<>(group.getOptions());
+        List<Option<?>> options = new ArrayList<>(group.getOptions());
         options.add(1, OptionImpl.createBuilder(Boolean.TYPE, vanillaOpts).setName(Text.translatable("betterhandbobbing.options.handbob")).setTooltip(Text.translatable("betterhandbobbing.options.handbob.tooltip")).setControl(TickBoxControl::new).setBinding(new VanillaBooleanOptionBinding(BetterHandBobbing.getHandBob())).build());
         OptionGroup.Builder builder = OptionGroup.createBuilder();
         options.forEach(builder::add);

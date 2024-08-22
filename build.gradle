@@ -30,7 +30,7 @@ dependencies {
     modImplementation "maven.modrinth:iris:${project.iris_version}"
     implementation "org.joml:joml:1.10.4"
     implementation "org.anarres:jcpp:1.4.14"
-    implementation "io.github.douira:glsl-transformer:1.0.1"
+    implementation "io.github.douira:glsl-transformer:2.0.1"
 }
 
 processResources {
@@ -73,6 +73,19 @@ java {
 jar {
     from("LICENSE") {
         rename { "${it}_${project.archivesBaseName}" }
+    }
+    duplicatesStrategy 'include'
+    from("/src/main/resources/fabric.mod.json") {
+        filter {
+            String line -> line.replaceAll("MOD_VERSION", project.mod_version)
+        }
+        rename { "fabric.mod.json" }
+    }
+    from("/src/main/resources/quilt.mod.json") {
+        filter {
+            String line -> line.replaceAll("MOD_VERSION", project.mod_version)
+        }
+        rename { "quilt.mod.json" }
     }
 }
 
