@@ -24,18 +24,17 @@ import java.util.List;
 
 @Mixin(SodiumGameOptionPages.class)
 public class UserConfigCategoriesMixin {
-    private static final Boolean hasOtherGroup = FabricLoader.getInstance().isModLoaded("reeses-sodium-options") && FabricLoader.getInstance().isModLoaded("sodium-extra");
     @Shadow @Final private static MinecraftOptionsStorage vanillaOpts;
 
     @Inject(method = "general", at = @At("RETURN"), remap = false, cancellable = true)
     private static void bhb$addOption(CallbackInfoReturnable<OptionPage> cir) {
         List<OptionGroup> groups = new ArrayList<>(cir.getReturnValue().getGroups());
-        OptionGroup group = groups.get(hasOtherGroup ? 3 : 2);
+        OptionGroup group = groups.get(2);
         List<Option<?>> options = new ArrayList<>(group.getOptions());
         options.add(1, OptionImpl.createBuilder(Boolean.TYPE, vanillaOpts).setName(Text.translatable("betterhandbobbing.options.handbob")).setTooltip(Text.translatable("betterhandbobbing.options.handbob.tooltip")).setControl(TickBoxControl::new).setBinding(new VanillaBooleanOptionBinding(BetterHandBobbing.getHandBob())).build());
         OptionGroup.Builder builder = OptionGroup.createBuilder();
         options.forEach(builder::add);
-        groups.set(hasOtherGroup ? 3 : 2, builder.build());
+        groups.set(2, builder.build());
         cir.setReturnValue(new OptionPage(Text.translatable("stat.generalButton"), ImmutableList.copyOf(groups)));
     }
 }

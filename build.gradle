@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.10-SNAPSHOT'
+    id 'fabric-loom' version '1.11-SNAPSHOT'
     id 'maven-publish'
 }
 
@@ -28,9 +28,12 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modImplementation "maven.modrinth:sodium:${project.sodium_version}"
     modImplementation "maven.modrinth:iris:${project.iris_version}"
-    implementation "org.joml:joml:1.10.4"
-    implementation "org.anarres:jcpp:1.4.14"
-    implementation "io.github.douira:glsl-transformer:2.0.1"
+
+    // Iris Dependencies
+    runtimeOnly("org.joml:joml:1.10.4")
+    runtimeOnly("org.antlr:antlr4-runtime:4.13.1")
+    runtimeOnly("io.github.douira:glsl-transformer:3.0.0-pre3")
+    runtimeOnly("org.anarres:jcpp:1.4.14")
 }
 
 processResources {
