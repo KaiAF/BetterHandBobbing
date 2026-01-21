@@ -1,7 +1,7 @@
 package net.livzmc.betterhandbobbing.mixin;
 
 import net.livzmc.betterhandbobbing.BetterHandBobbing;
-import net.minecraft.client.gui.screen.option.VideoOptionsScreen;
+import net.minecraft.client.gui.screen.option.AccessibilityOptionsScreen;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.option.SimpleOption;
 import org.apache.commons.lang3.ArrayUtils;
@@ -10,8 +10,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(VideoOptionsScreen.class)
-public class VideoOptionsScreenMixin {
+@Mixin(AccessibilityOptionsScreen.class)
+public class AccessibilityOptionsScreenMixin {
     @Inject(method = "getOptions", at = @At("RETURN"), cancellable = true)
     private static void bhb$getOptions(GameOptions gameOptions, CallbackInfoReturnable<SimpleOption<?>[]> cir) {
         SimpleOption<?>[] values = cir.getReturnValue();

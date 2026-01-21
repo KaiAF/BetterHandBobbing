@@ -5,7 +5,7 @@
   "plugin": "net.livzmc.betterhandbobbing.mixin.Compat",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "VideoOptionsScreenMixin",
+    "AccessibilityOptionsScreenMixin",
     "GameRendererMixin"
   ],
   "client": [
