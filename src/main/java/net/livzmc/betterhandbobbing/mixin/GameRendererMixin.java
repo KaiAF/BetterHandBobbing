@@ -1,10 +1,10 @@
 package net.livzmc.betterhandbobbing.mixin;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.livzmc.betterhandbobbing.BetterHandBobbing;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.option.SimpleOption;
-import net.minecraft.client.render.GameRenderer;
-import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.state.OptionsRenderState;
 import org.joml.Quaternionfc;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -14,24 +14,24 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(GameRenderer.class)
 public abstract class GameRendererMixin {
-    @Shadow @Final private MinecraftClient client;
+    @Shadow @Final private Minecraft minecraft;
 
-    @Redirect(method = "renderHand", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/option/SimpleOption;getValue()Ljava/lang/Object;"))
-    public Object getValue(SimpleOption instance) {
+    @Redirect(method = "renderItemInHand", at = @At(value = "FIELD", target = "net/minecraft/client/renderer/state/OptionsRenderState.bobView:Z"))
+    public boolean getValue(OptionsRenderState instance) {
         return true;
     }
 
-    @Redirect(method = "bobView", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/math/MatrixStack;translate(FFF)V"))
-    private void redirectedTranslate(MatrixStack instance, float x, float y, float z) {
-        if (BetterHandBobbing.getHandBob().getValue()) {
+    @Redirect(method = "bobView", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;translate(FFF)V"))
+    private void redirectedTranslate(PoseStack instance, float x, float y, float z) {
+        if (BetterHandBobbing.getHandBob().get()) {
             instance.translate(x, y, z);
         }
     }
 
-    @Redirect(method = "bobView", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/math/MatrixStack;multiply(Lorg/joml/Quaternionfc;)V"))
-    private void redirectedMultiply(MatrixStack instance, Quaternionfc quaternion) {
-        if (this.client.options.getBobView().getValue()) {
-            instance.multiply(quaternion);
+    @Redirect(method = "bobView", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;mulPose(Lorg/joml/Quaternionfc;)V"))
+    private void redirectedMultiply(PoseStack instance, Quaternionfc quaternion) {
+        if (this.minecraft.options.bobView().get()) {
+            instance.mulPose(quaternion);
         }
     }
 }
