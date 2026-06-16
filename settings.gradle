@@ -6,4 +6,5 @@ pluginManagement {
         }
         gradlePluginPortal()
     }
+    rootProject.name = "BetterHandBobbing"
 }
