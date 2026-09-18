@@ -1,11 +1,11 @@
 package net.livzmc.betterhandbobbing.mixin;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
 import net.livzmc.betterhandbobbing.BetterHandBobbing;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.state.OptionsRenderState;
-import org.joml.Quaternionfc;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -14,7 +14,9 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(GameRenderer.class)
 public abstract class GameRendererMixin {
-    @Shadow @Final private Minecraft minecraft;
+    @Shadow
+    @Final
+    private Minecraft minecraft;
 
     @Redirect(method = "renderItemInHand", at = @At(value = "FIELD", target = "net/minecraft/client/renderer/state/OptionsRenderState.bobView:Z"))
     public boolean getValue(OptionsRenderState instance) {
@@ -28,10 +30,10 @@ public abstract class GameRendererMixin {
         }
     }
 
-    @Redirect(method = "bobView", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;mulPose(Lorg/joml/Quaternionfc;)V"))
-    private void redirectedMultiply(PoseStack instance, Quaternionfc quaternion) {
+    @Redirect(method = "bobView", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;rotateDegrees(Lcom/mojang/math/Axis;F)V"))
+    private void redirectedRotateDegrees(PoseStack instance, Axis axis, float angle) {
         if (this.minecraft.options.bobView().get()) {
-            instance.mulPose(quaternion);
+            instance.rotateDegrees(axis, angle);
         }
     }
 }
