@@ -77,17 +77,11 @@ jar {
         rename { "${it}_${inputs.properties.archivesName}" }
     }
     duplicatesStrategy 'include'
-    from("/src/main/resources/fabric.mod.json") {
+    from("/src/main/resources/fabric.mod.json.default") {
         filter {
             String line -> line.replaceAll("MOD_VERSION", project.mod_version)
         }
         rename { "fabric.mod.json" }
-    }
-    from("/src/main/resources/quilt.mod.json") {
-        filter {
-            String line -> line.replaceAll("MOD_VERSION", project.mod_version)
-        }
-        rename { "quilt.mod.json" }
     }
 }
 
